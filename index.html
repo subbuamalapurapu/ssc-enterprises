@@ -1,1 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sri Sathyachandra Enterprises – FMCG Distribution</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fafafa;
+      color: #333;
+    }
+    /* 1. Navbar */
+    nav {
+      background-color: #007bff;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 14px 0;
+      gap: 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #cce7ff;
+    }
 
+    /* 2. Header */
+    header {
+      background-color: #004a99;
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      box-shadow: inset 0 -4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 3. Hero - Carousel */
+    .carousel {
+      position: relative;
+      max-width: 100%;
+      height: 400px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      background: #e9ecef;
+    }
+    .slides {
+      display: flex;
+      width: 2000%; /* 20 slides x 100% */
+      transition: transform 0.5s ease;
+      height: 100%;
+    }
+    .slide {
+      width: 5%; /* 100% / 20 */
+      flex-shrink: 0;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    /* Carousel controls */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 3px;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+    .carousel-btn:hover {
+      background: rgba(0,0,0,0.7);
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+
+    /* Sections 4-8 styles */
+    section {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 6px;
+      font-weight: 700;
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1em;
+    }
+    ul {
+      font-size: 1.1em;
+      line-height: 1.8;
+    }
+
+    /* Product catalog styles */
+    .category {
+      margin-bottom: 30px;
+    }
+    .product {
+      margin-left: 20px;
+      margin-bottom: 12px;
+    }
+    strong {
+      color: #004a99;
+    }
+
+    /* Language toggle */
+    #langSwitcher {
+      margin-bottom: 20px;
+    }
+    .telugu {
+      display: none;
+      font-size: 1.1em;
+      color: #333;
+    }
+    .english {
+      font-size: 1.1em;
+      color: #222;
+    }
+    button.lang-btn {
+      padding: 8px 15px;
+      margin-right: 10px;
+      cursor: pointer;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 4px;
+      font-size: 1em;
+    }
+    button.lang-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      border-left: 4px solid #007bff;
+      padding-left: 15px;
+      margin-bottom: 20px;
+      font-style: italic;
+      font-size: 1.1em;
+      background: #f7faff;
+      border-radius: 4px;
+    }
+    .testimonial strong {
+      font-style: normal;
+      color: #004a99;
+      display: block;
+      margin-top: 4px;
+      font-weight: 700;
+    }
+
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 400px;
+      margin-top: 15px;
+    }
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+      resize: vertical;
+      font-family: inherit;
+    }
+    button.submit-btn {
+      width: 150px;
+      align-self: flex-start;
+      background: #007bff;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button.submit-btn:hover {
+      background: #0056b3;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .carousel {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Navbar -->
+  <nav>
+    <a href="#header">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#products">Products</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- 2. Header -->
+  <header id="header">
+    Sri Sathyachandra Enterprises - FMCG Products & Distribution
+  </header>
+
+  <!-- 3. Hero with Carousel -->
+  <div class="carousel" aria-label="Business carousel images">
+    <div class="slides" id="slides">
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1606813908820-4802a93e5b7a?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1584680221034-c77dbbebfcb8?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1571689933501-bdb5f0ffe534?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1546097553-f368e818b5c2?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1562440499-bec028c15c88?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1606813907603-0de72f69e2fc?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1612831668159-4ba9599c5ee7?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1587854153209-c252e7cbaefc?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1606813907097-0b52eda2dbd8?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1590080877777-a7eecb3e9eaf?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1600718375639-0c576f6967f7?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1528731708534-816fe59f90b2?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1510626176961-4b69a48efd1f?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1422876648526-7a53f09ea9a4?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=60');"></div>
+      <div class="slide" style="background-image:url('https://images.unsplash.com/photo-1598514984590-0a1b8f8581e4?auto=format&fit=crop&w=1200&q=60');"></div>
+    </div>
+    <button class="carousel-btn prev" aria-label="Previous slide" onclick="prevSlide()">‹</button>
+    <button class="carousel-btn next" aria-label="Next slide" onclick="nextSlide()">›</button>
+  </div>
+
+  <!-- 4. About Us -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p><strong>Sri Sathyachandra Enterprises</strong> is a trusted FMCG and snacks distributor based in Eluru, dedicated to delivering quality products to local villages and towns. Founded under the leadership of CEO <strong>A V V Chandradhar</strong>, we aim to provide affordable and reliable FMCG and snack products at every doorstep.</p>
+    <p>We operate with a Registered GST status: <strong>37BCMPA5229G1ZO (Regular)</strong>.</p>
+    <p>Our commitment: shop to shop distribution, bilingual support, and extensive product variety.</p>
+  </section>
+
+  <!-- 5. Services / Highlights -->
+  <section id="services">
+    <h2>Our Services & Highlights</h2>
+    <ul>
+      <li>Wide range of FMCG & snacks products.</li>
+      <li>Shop-to-shop reliable distribution across villages.</li>
+      <li>Affordable pricing targeting village markets.</li>
+      <li>Bilingual product information for easy understanding (English & Telugu).</li>
+    </ul>
+  </section>
+
+  <!-- 6. Product Catalog with Language Toggle -->
+  <section id="products">
+    <h2>Product Catalog</h2>
+    <div id="langSwitcher">
+      <button class="lang-btn" onclick="showEnglish()">English</button>
+      <button class="lang-btn" onclick="showTelugu()">తెలుగు</button>
+    </div>
+
+    <div class="category">
+      <h3>Washing Soaps & Detergents</h3>
+      <div class="product">
+        <strong>Washing Soap</strong><br/>
+        <p class="english">Effective washing soaps for clean clothes. Price: ₹30 per bar</p>
+        <p class="telugu">వస్త్రాలను శుభ్రముగా ఉంచే ప్రభావవంతమైన సాబూలు. ధర: ₹30 ప్రతి బార్</p>
+      </div>
+      <div class="product">
+        <strong>Detergent Powder</strong><br/>
+        <p class="english">Powerful detergent powders for toughest stains. Price: ₹100 per kg</p>
+        <p class="telugu">కఠినమైన మచ్చలను లోపలికి తీసే శక్తివంతమైన డిటర్జెంట్ పొడులు. ధర: ₹100 ప్రతి కిలోగ్రామ్</p>
+      </div>
+      <div class="product">
+        <strong>Detergent Liquid</strong><br/>
+        <p class="english">Liquid detergents for gentle washing. Price: ₹120 per litre</p>
+        <p class="telugu">సున్నితమైన ఉతికేందుకు లిక్విడ్ డిటర్జెంట్లు. ధర: ₹120 ప్రతి లీటరు</p>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Dishwashing Soaps & Liquids</h3>
+      <div class="product">
+        <strong>Dishwashing Soap</strong><br/>
+        <p class="english">Strong cleaning soaps for dishes. Price: ₹25 per bar</p>
+        <p class="telugu">పాత్రల శుభ్రతకు బలం కలిగిన సాబూలు. ధర: ₹25 ప్రతి బార్</p>
+      </div>
+      <div class="product">
+        <strong>Dishwashing Liquid</strong><br/>
+        <p class="english">Gentle and effective liquid dishwashers. Price: ₹150 per litre</p>
+        <p class="telugu">సున్నితమైన మరియు ప్రభావవంతమైన లిక్విడ్ డిష్ వాషర్స్. ధర: ₹150 ప్రతి లీటరు</p>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Biscuits (5/- & 10/-)</h3>
+      <div class="product">
+        <strong>Biscuits - 5/-</strong><br/>
+        <p class="english">Delicious biscuits priced at 5 rupees each.</p>
+        <p class="telugu">5 రూపాయల ధరలో రుచికరమైన బిస్కెట్లు.</p>
+      </div>
+      <div class="product">
+        <strong>Biscuits - 10/-</strong><br/>
+        <p class="english">Tasty biscuits priced at 10 rupees each.</p>
+        <p class="telugu">10 రూపాయల చవిచూసిన బిస్కెట్లు.</p>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Drinks (10/-)</h3>
+      <div class="product">
+        <strong>Soft Drinks</strong><br/>
+        <p class="english">Refreshing soft drinks priced at 10 rupees.</p>
+        <p class="telugu">10 రూపాయల ధరలో తాజాదనం కలిగిన సాఫ్ట్ డ్రింక్స్.</p>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Fancy Items</h3>
+      <div class="product">
+        <strong>Fancy Snacks & Treats</strong><br/>
+        <p class="english">Variety of fancy snacks and special treats.</p>
+        <p class="telugu">వివిధ రకాల ఫ్యాన్సీ స్నాక్స్ మరియు ప్రత్యేక ప్లేట్లు.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Testimonials -->
+  <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial">
+      "Excellent service and timely delivery. Helps me keep my shop stocked!"<br/>
+      <strong>- Ravi Kumar</strong>
+    </div>
+    <div class="testimonial">
+      "Good quality products and great prices. Really appreciate bilingual support."<br/>
+      <strong>- Lakshmi</strong>
+    </div>
+    <div class="testimonial">
+      "Reliable partner for village shops distribution."<br/>
+      <strong>- Suresh Reddy</strong>
+    </div>
+  </section>
+
+  <!-- 8. Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Feel free to reach out to us for orders, queries, or support.</p>
+    <p><strong>Phone / WhatsApp:</strong> 9398321557 | 9063514183</p>
+    <p><strong>Address:</strong> Eluru, Andhra Pradesh</p>
+    <p><strong>GST Number:</strong> 37BCMPA5229G1ZO (Regular Taxpayer)</p>
+    <form onsubmit="event.preventDefault(); alert('Thank you for contacting Sri Sathyachandra Enterprises! We will get back to you soon.'); this.reset();">
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Message" rows="4" required></textarea>
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </section>
+
+  <script>
+    // Carousel logic
+    const slides = document.getElementById('slides');
+    const totalSlides = slides.children.length;
+    let currentIndex = 0;
+
+    function showSlide(index) {
+      if (index >= totalSlides) currentIndex = 0;
+      else if (index < 0) currentIndex = totalSlides - 1;
+      else currentIndex = index;
+      slides.style.transform = `translateX(-${currentIndex * 5}%)`;
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    // Auto cycle every 4 seconds
+    setInterval(nextSlide, 4000);
+
+    // Language toggle functions
+    function showEnglish() {
+      document.querySelectorAll('.english').forEach(el => el.style.display = 'block');
+      document.querySelectorAll('.telugu').forEach(el => el.style.display = 'none');
+    }
+    function showTelugu() {
+      document.querySelectorAll('.english').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.telugu').forEach(el => el.style.display = 'block');
+    }
+
+    // Show English by default on page load
+    showEnglish();
+  </script>
+
+</body>
+</html>
